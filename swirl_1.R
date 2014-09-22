@@ -19,21 +19,30 @@ library(dplyr)
 packageVersion("dplyr")
 cran<-tbl_df(mydf)
 rm("mydf")
+cran
+?manip
 
 #select
 
 select(cran,ip_id,package, country)  #selcts particular columns in the order specified
+5:20
 select(cran,r_arch:country)          #selects columns between the two column headers
+select(cran,country:r_arch)          #selects columns between the two column headers
+cran
 select(cran, -time)                  #removes a particular column
+-(5:20)
 select(cran,-(X:size))
 
 #filter
 
 filter(cran,package == "swirl")      #selects particular rows with a particular value
 filter(cran,r_version=="3.1.1",country=="US")
+?Comparison
 filter(cran,r_version <="3.0.2",country=="IN")
 filter(cran,country=="US"|country=="IN")
 filter(cran,size > 100500,r_os == "linux-gnu")
+ is.na(c(3, 5, NA, 10))
+ !is.na(c(3, 5, NA, 10))
 filter(cran,!is.na(r_version ))                   #remove all rows with an NA in a particular column
 
 #arrange
@@ -47,6 +56,7 @@ arrange(cran2,country,desc(r_version),ip_id)              #order by multiple var
 #mutate
 
 cran3<-select(cran,ip_id,package,size)      #adds columns
+cran3
 mutate(cran3,size_mb=size/2^20)
 mutate(cran3,size_mb=size/2^20,size_gb=size_mb/2^10)
 mutate(cran3,correct_size=size+1000)
@@ -55,9 +65,49 @@ mutate(cran3,correct_size=size+1000)
 
 summarize(cran,avg_bytes=mean(size))
 
+#################################################################################
+#################################################################################
 
-
-
-
+library(dplyr)
+cran<-tbl_df(mydf)
+rm("mydf")
+cran
+?group_by
+by_package<-group_by(cran,package)
+by_package
+summarize(by_package,mean(size))
+pack_sum
+quantile(pack_sum$count,probs=0.99)
+top_counts<-filter(pack_sum,count>679)
+top_counts
+head(top_counts,20)
+arrange(top_counts,desc(count))
+ quantile(pack_sum$unique, probs = 0.99)
+top_unique<-filter(pack_sum,unique>465)
+top_unique
+arrange(top_unique,desc(unique))
+ 
+############################################################################
+############################################################################
+library(tidyr)
+students
+?gather
+gather(students, sex, count, -grade)
+students2 
+res<-gather(students2, sex_class, count, -grade)
+res
+?separate
+separate(res,sex_class,c("sex","class"))
+students3
+students3 %>% gather( class, grade, class1:class5 , na.rm= TRUE) %>% print
+?spread
+extract_numeric("class5")
+students4
+passed
+failed
+passed<-mutate(passed,status="passed")
+failed<-mutate(failed,status="failed")
+rbind_list(passed,failed)
+sat
 
 
