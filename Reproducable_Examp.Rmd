@@ -1,0 +1,68 @@
+---
+output: html_document
+---
+My First MD R file
+==================
+
+This is my first R markdown file
+
+here we are going to load some data
+```{r}
+library(datasets)
+data(airquality)
+summary(airquality)
+```
+
+lets make a plot
+
+```{r}
+pairs(airquality)
+```
+
+here is a regression model
+
+```{r}
+library(stats)
+fit<-lm(Ozone~Wind+Solar.R+Temp,data=airquality)
+summary(fit)
+```
+
+* first
+* second
+* third
+
+Add some inline compuations by using echo=FALSE within the {}
+```{r computetime,echo=FALSE}
+time <- format(Sys.time(),"%a %b %d %X %Y")
+rand <-rnorm(1)
+```
+The current time is `r time`. My favorite number is `r rand`.
+
+###Some Figures!
+
+simulate some data 
+```{r}
+x<-rnorm(100)
+y<-x+rnorm(100,sd=0.5)
+```
+Scatter plot of the data 
+```{r}
+par(mar = c(5,4,1,1),las=1)
+plot(x,y,main = "Simulated me")
+```
+
+with the height adjusted with fig.height=4 in the {}
+```{r fig.height=4}
+par(mar = c(5,4,1,1),las=1)
+plot(x,y,main = "Simulated me")
+```
+
+###A nice table
+```{r showtable,results='asis'}
+library(xtable)
+xt<-xtable(summary(fit))
+print(xt,type="html")
+```
+
+Set global options within an R {} opts_chunk$set(echo=FALSE, results="hide")
+Use cache=TRUE on chunks if running code multiple times and there are some chunks that take a long time to run

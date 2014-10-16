@@ -1,0 +1,58 @@
+pwd
+clear
+ls
+cd
+mkdir
+touch make empty file
+cp -r to copy whole directory
+rm -r for whole directory
+mv move but also rename
+date
+echo
+
+git config --global user.name "Your Name Here"
+git config --global user.email "your_email@example.com"
+git config --list
+
+mkdir ~/test-repo
+cd ~/test-repo
+git init
+git remote add origin https://github.com/yourUserNameHere/test-repo.git
+git clone https://github.com/yourUserNameHere/repoNameHere.git
+
+git add . adds all new files
+git add -u updates tracking for files that changed names or were deleted
+git add -A does both of the previous
+git commit -m "message" where message is a useful description of what you did
+git push
+git checkout -b branchname
+git branch
+git checkout master
+
+Markdown
+## This is a secondary heading BIG
+### This is a tertiary heading LESS BIG
+*This text will appear italicized*
+**This text will appear bold**
+
+- first
+- second
+- third item in a list
+
+1. first
+2. second
+3. third item in an ordered list
+
+LINKS
+[Johns Hopkins Bloomberg School of Public Health](http://www.jhsph.edu/)
+[Download R](http://www.r-project.org/)
+[RStudio](http://www.rstudio.com/)
+
+I spend so much time reading [R bloggers][1] and [Simply Statistics][2]!
+[1]: http://www.r-bloggers.com/ "R bloggers"
+[2]: http://simplystatistics.org/ "Simply Statistics"
+
+NEWLINES REQUIRE DOUBLE SPACE AT END OF LINE
+http://daringfireball.net/projects/markdown/basics
+http://daringfireball.net/projects/markdown/basics
+
